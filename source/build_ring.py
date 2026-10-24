@@ -13,8 +13,13 @@ signet rings of the 1st-2nd century AD (Henig types II/III):
                           the gold so that it can be pressed into wax)
 and exports printable STL / 3MF, a coloured GLB and the payload for the HTML viewer.
 
-Usage:  python3 build_ring.py --us-size 9 --height portrait_height.npy \
-                --img-scale 1.09 --relief 0.9 --out out
+Usage:  python3 source/build_ring.py --us-size 9 --out out
+Writes, under --out (use --out . to refresh this repository in place):
+  print/multi-colour/apollo_signet_2colour.3mf
+  print/two-part/ring_body_gold.stl, print/two-part/apollo_stone_red.stl
+  print/one-piece/ring_one_piece.stl
+  viewer/apollo_signet_coloured.glb
+  build/viewer_payload/ (input of source/viewer-build/build.mjs), build/specs.json
 """
 import argparse, json, os, zipfile
 import numpy as np
@@ -25,7 +30,7 @@ from skimage import measure
 # ---------------------------------------------------------------- parameters
 ap = argparse.ArgumentParser()
 ap.add_argument('--us-size', type=float, default=9.0)
-ap.add_argument('--height', default='portrait_height.npy')
+ap.add_argument('--height', default=os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'portrait', 'portrait_height.npy'))
 ap.add_argument('--out', default='out')
 ap.add_argument('--img-scale', type=float, default=1.09)
 ap.add_argument('--nt', type=int, default=1800)
@@ -37,7 +42,10 @@ args = ap.parse_args()
 
 inner_d = 11.63 + 0.8128 * args.us_size          # US ring size -> inner diameter
 R_in = inner_d / 2
-os.makedirs(args.out, exist_ok=True)
+P_MC, P_TWO, P_ONE = f'{args.out}/print/multi-colour', f'{args.out}/print/two-part', f'{args.out}/print/one-piece'
+P_VIEW, P_BUILD = f'{args.out}/viewer', f'{args.out}/build'
+for d in (P_MC, P_TWO, P_ONE, P_VIEW, P_BUILD):
+    os.makedirs(d, exist_ok=True)
 
 # stone (the Apollo insert, unchanged): oval 11.4 x 14.6 mm, long axis along the finger (Y)
 clear = 0.10                    # radial clearance stone <-> seat
@@ -222,9 +230,9 @@ except Exception as e:
     print('union failed', e); one = trimesh.util.concatenate([body, stone])
 
 # ---------------------------------------------------------------- exports
-body.export(f'{args.out}/ring_body_gold.stl')
-stone.export(f'{args.out}/apollo_stone_red.stl')
-one.export(f'{args.out}/ring_one_piece.stl')
+body.export(f'{P_TWO}/ring_body_gold.stl')
+stone.export(f'{P_TWO}/apollo_stone_red.stl')
+one.export(f'{P_ONE}/ring_one_piece.stl')
 
 # coloured GLB (PBR), with the exact surface normals of the body
 from trimesh.visual.material import PBRMaterial
@@ -233,10 +241,10 @@ b2.vertex_normals = body_normals
 b2.visual = trimesh.visual.TextureVisuals(material=PBRMaterial(name='gold', baseColorFactor=[1.0, 0.766, 0.336, 1], metallicFactor=1.0, roughnessFactor=0.22))
 s2.visual = trimesh.visual.TextureVisuals(material=PBRMaterial(name='carnelian', baseColorFactor=[0.70, 0.07, 0.04, 1], metallicFactor=0.0, roughnessFactor=0.28))
 sc = trimesh.Scene(); sc.add_geometry(b2, node_name='ring_body_gold'); sc.add_geometry(s2, node_name='apollo_stone_red')
-sc.export(f'{args.out}/apollo_signet_coloured.glb', include_normals=True)
+sc.export(f'{P_VIEW}/apollo_signet_coloured.glb', include_normals=True)
 
-# payload for the HTML viewer (viewer/build.mjs packs it into apollo_signet_viewer.html)
-vdir = f'{args.out}/viewer_payload'
+# payload for the HTML viewer (source/viewer-build/build.mjs packs it into apollo_signet_viewer.html)
+vdir = f'{P_BUILD}/viewer_payload'
 os.makedirs(vdir, exist_ok=True)
 np.asarray(body.vertices, np.float32).tofile(f'{vdir}/body_pos.f32')
 np.asarray(body_normals, np.float32).tofile(f'{vdir}/body_nrm.f32')
@@ -265,7 +273,7 @@ model = f'''<?xml version="1.0" encoding="UTF-8"?>
 </resources>
 <build><item objectid="4" transform="1 0 0 0 1 0 0 0 1 0 0 {-(zs[0]):.4f}"/></build>
 </model>'''
-with zipfile.ZipFile(f'{args.out}/apollo_signet_2colour.3mf', 'w', zipfile.ZIP_DEFLATED) as z:
+with zipfile.ZipFile(f'{P_MC}/apollo_signet_2colour.3mf', 'w', zipfile.ZIP_DEFLATED) as z:
     z.writestr('[Content_Types].xml', '<?xml version="1.0" encoding="UTF-8"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="model" ContentType="application/vnd.ms-package.3dmanufacturing-3dmodel+xml"/></Types>')
     z.writestr('_rels/.rels', '<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Target="/3D/3dmodel.model" Id="rel0" Type="http://schemas.microsoft.com/3dmanufacturing/2013/01/3dmodel"/></Relationships>')
     z.writestr('3D/3dmodel.model', model)
@@ -282,5 +290,5 @@ info = dict(us_size=args.us_size, inner_diameter_mm=round(inner_d, 2),
             body_watertight=bool(body.is_watertight), stone_watertight=bool(stone.is_watertight),
             one_piece_watertight=bool(one.is_watertight),
             bbox_mm=np.round(one.extents, 2).tolist())
-json.dump(info, open(f'{args.out}/specs.json', 'w'), indent=1)
+json.dump(info, open(f'{P_BUILD}/specs.json', 'w'), indent=1)
 print(json.dumps(info, indent=1))
