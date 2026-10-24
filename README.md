@@ -3,6 +3,8 @@
 A Roman-style gold signet ring set with a carnelian carrying a laureate head of Apollo, ready for 3D printing.
 Ring size US 9 (inner diameter 18.95 mm); the generator in `source/` makes other sizes.
 
+**[Open the interactive 3D viewer](https://htmlpreview.github.io/?https://github.com/chennakeshavadasa/Apollo_Signet_ring/blob/main/viewer/apollo_signet_viewer.html)** (turn, zoom, preset views; nothing to install)
+
 <p align="center"><img src="images/render_three_quarter.png" width="640" alt="Apollo signet ring, three-quarter view"></p>
 <p align="center">
   <img src="images/render_top.png" width="420" alt="Bezel face">
@@ -11,13 +13,13 @@ Ring size US 9 (inner diameter 18.95 mm); the generator in `source/` makes other
 
 ## Which file do I print?
 
-All print files are in [`print/`](print), in millimetres. Pick **one** of the three folders:
+All print files are in [`print/`](https://github.com/chennakeshavadasa/Apollo_Signet_ring/tree/main/print), in millimetres. Pick **one** of the three folders:
 
 | Your printer / goal | Print | Notes |
 |---|---|---|
-| **Multi-colour FDM printer** (Bambu AMS, Prusa MMU, ...) | [`print/multi-colour/apollo_signet_2colour.3mf`](print/multi-colour) | One file with the gold body and the red stone already assembled. If the slicer does not assign the filaments by itself, give `ring_body_gold` the gold filament and `apollo_stone_red` the red one. |
-| **Resin (MSLA) printer**, or any single-colour printer when you want two colours | [`print/two-part/ring_body_gold.stl`](print/two-part) **and** [`print/two-part/apollo_stone_red.stl`](print/two-part) | Print the body in gold/yellow and the stone in red, then glue the stone into its seat. Gives the sharpest portrait. |
-| **One colour only**, or a pattern for **lost-wax casting** in metal | [`print/one-piece/ring_one_piece.stl`](print/one-piece) | Body and stone fused into one solid; the fitting gap is closed. |
+| **Multi-colour FDM printer** (Bambu AMS, Prusa MMU, ...) | [`print/multi-colour/apollo_signet_2colour.3mf`](print/multi-colour/apollo_signet_2colour.3mf) | One file with the gold body and the red stone already assembled. If the slicer does not assign the filaments by itself, give `ring_body_gold` the gold filament and `apollo_stone_red` the red one. |
+| **Resin (MSLA) printer**, or any single-colour printer when you want two colours | [`print/two-part/ring_body_gold.stl`](print/two-part/ring_body_gold.stl) **and** [`print/two-part/apollo_stone_red.stl`](print/two-part/apollo_stone_red.stl) | Print the body in gold/yellow and the stone in red, then glue the stone into its seat. Gives the sharpest portrait. |
+| **One colour only**, or a pattern for **lost-wax casting** in metal | [`print/one-piece/ring_one_piece.stl`](print/one-piece/ring_one_piece.stl) | Body and stone fused into one solid; the fitting gap is closed. |
 
 **Best result:** a resin printer with the two-part STLs. The portrait has detail down to about 0.05 mm (eye, lips, laurel veins).
 
@@ -30,13 +32,15 @@ All print files are in [`print/`](print), in millimetres. Pick **one** of the th
 
 ## View it in 3D
 
-Open [`viewer/apollo_signet_viewer.html`](viewer) in any browser (download it, then double-click). It is a single file and works offline: drag to turn, scroll or pinch to zoom, and use the buttons for the preset views, a turntable and **Lift stone** (shows the seat).
+**Online:** [open the viewer](https://htmlpreview.github.io/?https://github.com/chennakeshavadasa/Apollo_Signet_ring/blob/main/viewer/apollo_signet_viewer.html).
+With GitHub Pages turned on for this repository (*Settings > Pages > Build and deployment: Deploy from a branch, `main`, `/ (root)`*), it is also at
+[https://chennakeshavadasa.github.io/Apollo_Signet_ring/viewer/apollo_signet_viewer.html](https://chennakeshavadasa.github.io/Apollo_Signet_ring/viewer/apollo_signet_viewer.html).
 
-**As a web page:** turn on GitHub Pages for this repository (*Settings > Pages > Build and deployment: Deploy from a branch, `main`, `/ (root)`*). The viewer is then at
-`https://chennakeshavadasa.github.io/Apollo_Signet_ring/viewer/apollo_signet_viewer.html`.
-Pages on a private repository needs a paid GitHub plan, and the published site is public.
+**Offline:** download [`viewer/apollo_signet_viewer.html`](viewer/apollo_signet_viewer.html) and double-click it; it is a single file that opens in any browser.
 
-[`viewer/apollo_signet_coloured.glb`](viewer) is the full-resolution coloured model for Blender, Windows 3D Viewer and other 3D programs.
+Drag to turn, scroll or pinch to zoom, and use the buttons for the preset views, a turntable and **Lift stone** (shows the seat).
+
+[`viewer/apollo_signet_coloured.glb`](viewer/apollo_signet_coloured.glb) is the full-resolution coloured model for Blender, Windows 3D Viewer and other 3D programs.
 
 ## Design
 
@@ -62,7 +66,7 @@ The gold body follows the Roman gold gem-set signet rings of the 1st-2nd century
 ### Casting in metal
 
 Solid body volume 1,129 mm³: about 17 g in 18k gold, 15 g in 14k gold, 12 g in sterling silver.
-The stone can be cast in red resin or glass, or carved in real carnelian from the height map in [`portrait/`](portrait).
+The stone can be cast in red resin or glass, or carved in real carnelian from the height map in [`portrait/`](https://github.com/chennakeshavadasa/Apollo_Signet_ring/tree/main/portrait).
 
 ## Make another ring size
 
