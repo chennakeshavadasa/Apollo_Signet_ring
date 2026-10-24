@@ -1,5 +1,5 @@
 // Packs the generator's viewer payload into one self-contained HTML file.
-// Usage: node build.mjs <out>/viewer_payload ../apollo_signet_viewer.html
+// Usage (from source/viewer-build): node build.mjs ../../build/viewer_payload ../../viewer/apollo_signet_viewer.html
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
