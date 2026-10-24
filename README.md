@@ -20,7 +20,7 @@ All print files are in [`print/`](https://github.com/chennakeshavadasa/Apollo_Si
 | Your printer / goal | Print | Notes |
 |---|---|---|
 | **Multi-colour FDM printer** (Bambu AMS, Prusa MMU, ...) | [`print/multi-colour/apollo_signet_2colour.3mf`](print/multi-colour/apollo_signet_2colour.3mf) | One file with the gold body and the red stone already assembled. If the slicer does not assign the filaments by itself, give `ring_body_gold` the gold filament and `apollo_stone_red` the red one. |
-| **Resin (MSLA) printer**, or any single-colour printer when you want two colours | [`print/two-part/ring_body_gold.stl`](print/two-part/ring_body_gold.stl) **and** [`print/two-part/apollo_stone_red.stl`](print/two-part/apollo_stone_red.stl) | Print the body in gold/yellow and the stone in red, then glue the stone into its seat. Gives the sharpest portrait. |
+| **Resin (MSLA) printer**, or any single-colour printer (Ender 3 etc.) when you want two colours | [`print/two-part/ring_body_gold.stl`](print/two-part/ring_body_gold.stl) **and** [`print/two-part/apollo_stone_red.stl`](print/two-part/apollo_stone_red.stl) | Print the body in gold/yellow and the stone in red, then glue the stone into its seat. Gives the sharpest portrait. |
 | **One colour only**, or a pattern for **lost-wax casting** in metal | [`print/one-piece/ring_one_piece.stl`](print/one-piece/ring_one_piece.stl) | Body and stone fused into one solid; the fitting gap is closed. |
 
 **Best result:** a resin printer with the two-part STLs. The portrait has detail down to about 0.05 mm (eye, lips, laurel veins).
@@ -28,9 +28,31 @@ All print files are in [`print/`](https://github.com/chennakeshavadasa/Apollo_Si
 ### Printing tips
 
 - Print a quick test of the ring body first to confirm the finger size.
-- **Stone:** print it flat side down; it needs no supports. On FDM use a 0.2 mm nozzle and 0.06-0.08 mm layers (a 0.4 mm nozzle softens the face).
+- **Stone:** print it flat side down; it needs no supports. On FDM use a 0.2 mm nozzle and 0.04-0.08 mm layers (a 0.4 mm nozzle softens the face).
 - **Ring body:** put the supports on the inside of the band and under the bezel; keep them off the top of the bezel and the collet.
 - **Fit:** the seat has 0.10 mm clearance all round. If the stone is tight, scale it to 99 % in X and Y; if it is loose, a drop of CA glue holds it.
+
+### Ender 3 and other single-nozzle FDM printers
+
+The Ender 3 prints one colour at a time, so use the STL files:
+
+- **Gold ring with a red stone:** print [`print/two-part/ring_body_gold.stl`](print/two-part/ring_body_gold.stl) in gold or yellow filament and [`print/two-part/apollo_stone_red.stl`](print/two-part/apollo_stone_red.stl) in red, then glue the stone into its seat.
+- **One colour:** print [`print/one-piece/ring_one_piece.stl`](print/one-piece/ring_one_piece.stl).
+- Skip the 3MF: it opens in Cura, but with one nozzle both parts come out in the same filament.
+
+Open the STLs in Cura, Creality Print, PrusaSlicer or OrcaSlicer. They are in millimetres and load at the right size (about 24 x 17 x 25 mm) with no scaling.
+
+| Setting | Recommendation |
+|---|---|
+| Nozzle | The stock 0.4 mm nozzle works but blurs the curls, laurel leaves and facial features; a 0.2 mm nozzle is much better for the stone |
+| Layer height | Multiples of 0.04 mm on the Ender 3: 0.04 mm for the stone (the relief is only 0.9 mm tall), 0.08 mm for the ring body |
+| Stone | Flat side down, no supports. Print slowly with full part cooling, or print two stones at once so each layer has time to cool |
+| Ring body | As it loads, stone seat on top, with tree supports. They touch the inside of the band and the underside (sand those); the top of the bezel stays clean |
+| Fit | If the stone is tight, scale it to 98-99 % in X and Y. Print the ring body first to check the finger size |
+| Material | PLA for a test or display piece; PETG for a ring you will wear (a thin PLA band can crack) |
+
+An Ender 3 gives a recognisable laurel-crowned head, but some fine detail is lost and small layer steps may show on the face.
+For a crisp portrait, have only the stone printed in resin (a print service is fine) and print the ring body on the Ender 3.
 
 ## View it in 3D
 
