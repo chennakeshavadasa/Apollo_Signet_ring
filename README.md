@@ -3,7 +3,9 @@
 A Roman-style gold signet ring set with a carnelian carrying a laureate head of Apollo, ready for 3D printing.
 Ring size US 9 (inner diameter 18.95 mm); the generator in `source/` makes other sizes.
 
-**[Open the interactive 3D viewer](https://htmlpreview.github.io/?https://github.com/chennakeshavadasa/Apollo_Signet_ring/blob/main/viewer/apollo_signet_viewer.html)** (turn, zoom, preset views; nothing to install)
+**[Open the interactive 3D viewer](https://chennakeshavadasa.github.io/Apollo_Signet_ring/viewer/apollo_signet_viewer.html)** (turn, zoom, preset views; nothing to install)
+
+Website: [chennakeshavadasa.github.io/Apollo_Signet_ring](https://chennakeshavadasa.github.io/Apollo_Signet_ring/)
 
 <p align="center"><img src="images/render_three_quarter.png" width="640" alt="Apollo signet ring, three-quarter view"></p>
 <p align="center">
@@ -32,9 +34,8 @@ All print files are in [`print/`](https://github.com/chennakeshavadasa/Apollo_Si
 
 ## View it in 3D
 
-**Online:** [open the viewer](https://htmlpreview.github.io/?https://github.com/chennakeshavadasa/Apollo_Signet_ring/blob/main/viewer/apollo_signet_viewer.html).
-With GitHub Pages turned on for this repository (*Settings > Pages > Build and deployment: Deploy from a branch, `main`, `/ (root)`*), it is also at
-[https://chennakeshavadasa.github.io/Apollo_Signet_ring/viewer/apollo_signet_viewer.html](https://chennakeshavadasa.github.io/Apollo_Signet_ring/viewer/apollo_signet_viewer.html).
+**Online:** [https://chennakeshavadasa.github.io/Apollo_Signet_ring/viewer/apollo_signet_viewer.html](https://chennakeshavadasa.github.io/Apollo_Signet_ring/viewer/apollo_signet_viewer.html)
+(GitHub Pages, published from `main`; it updates by itself a minute after each push).
 
 **Offline:** download [`viewer/apollo_signet_viewer.html`](viewer/apollo_signet_viewer.html) and double-click it; it is a single file that opens in any browser.
 
